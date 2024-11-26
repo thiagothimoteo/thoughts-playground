@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-1: #B60117;
+  --color-2: #F55A23;
+  --color-3: #066F08;
+  --color-4: #0163BB;
+  --body-bg-color: #161B24;
+  --body-bg-image: linear-gradient(to bottom,
+      var(--color-1),
+      var(--color-1) 25%,
+      var(--color-2) 25%,
+      var(--color-2) 50%,
+      var(--color-3) 50%,
+      var(--color-3) 75%,
+      var(--color-4) 75%);
+  --font-family-serif: "IBM Plex Serif", serif;
+  --font-family-sans-serif: "Poppins", sans-serif;
+}
+
 html,
 body {
   @apply bg-white dark:bg-gray-950;
@@ -9,4 +27,28 @@ body {
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
+
+  background-image: var(--body-bg-image);
+  background-color: var(--body-bg-color);
+  background-size: 15px;
+  background-repeat: no-repeat;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-sans-serif);
+  font-weight: 600;
+  font-style: normal;
+}
+
+p {
+  font-family: var(--font-family-serif);
+  font-weight: 400;
+  font-style: normal;
 }
