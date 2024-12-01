@@ -1,9 +1,11 @@
 import {
+  Link,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 
@@ -23,6 +25,8 @@ export const links: LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+
   return (
     <html lang="en">
       <head>
@@ -31,7 +35,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body data-path={location.pathname}>
+        <nav className="font-regular flex items-center gap-x-6 text-xl font-sans justify-end mb-6">
+          <Link to="/">about me</Link>
+          <Link to="/blog">blog</Link>
+        </nav>
         {children}
         <ScrollRestoration />
         <Scripts />
