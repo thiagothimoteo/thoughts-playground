@@ -1,5 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
-import { Link } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
+import { getStrapiData } from "~/utils/api";
 
 export const meta: MetaFunction = () => {
   return [
@@ -8,7 +9,15 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+export async function loader() {
+  return getStrapiData('blog-posts');
+}
+
 export default function Blog() {
+  const posts = useLoaderData();
+
+  console.log('posts', posts)
+
   return (
     <main>
       <header className="base-container">
@@ -17,8 +26,9 @@ export default function Blog() {
       </header>
       <hr className="border-t border-blue-100 my-4" />
 
-      <Link to="/blog/lorem-ipsum">What is Lorem Ipsum?</Link>
-
+      {posts.map((post) => (
+        <Link key={post.id} to={`/blog/${post.id}`}>{post.title}</Link>
+      ))}
     </main>
   )
 }
