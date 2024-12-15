@@ -14,10 +14,12 @@ export type Post = {
   }
 }
 
+const BLOG_DESCRIPTION = `This is a space to explore new frontend technologies and trends, experiment with them firsthand, and share my discoveries along the way.`
+
 export const meta: MetaFunction = () => {
   return [
-    { title: "Thiago Thimóteo" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: `Thiago Thimóteo - Blog` },
+    { name: "description", content: BLOG_DESCRIPTION },
   ];
 };
 
@@ -32,7 +34,7 @@ export default function Blog() {
     <main>
       <header className="base-container">
         <h1 className="main-heading">Blog</h1>
-        <p className="max-w-[570px] text-xl text-gray-500">This is a space to explore new frontend technologies and trends, experiment with them firsthand, and share my discoveries along the way.</p>
+        <p className="max-w-[570px] text-xl text-gray-500">{BLOG_DESCRIPTION}</p>
       </header>
       <hr className="border-t border-blue-100 my-4" />
 

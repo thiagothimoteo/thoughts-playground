@@ -4,10 +4,12 @@ import { getStrapiData } from "~/utils/api";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Post } from "./blog._index";
 
-export const meta: MetaFunction = () => {
+export const meta: MetaFunction = ({ data }) => {
+  const post = (data as Post[])?.[0];
+
   return [
-    { title: "Thiago Thimóteo" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: `Thiago Thimóteo - Blog - ${post.title}` },
+    { name: "description", content: post.preview },
   ];
 };
 
