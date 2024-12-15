@@ -1,11 +1,11 @@
 // Custom error class for errors from Strapi API
 class APIResponseError extends Error {
-  constructor(response) {
+  constructor(response: Response) {
     super(`API Error Response: ${response.status} ${response.statusText}`);
   }
 }
 
-export const checkStatus = (response) => {
+export const checkStatus = (response: Response) => {
   if (response.ok) {
     // response.status >= 200 && response.status < 300
     return response;
@@ -15,7 +15,7 @@ export const checkStatus = (response) => {
 }
 
 class MissingEnvironmentVariable extends Error {
-  constructor(name) {
+  constructor(name: string) {
     super(`Missing Environment Variable: The ${name} environment variable must be defined`);
   }
 }

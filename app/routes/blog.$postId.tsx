@@ -2,6 +2,7 @@ import type { MetaFunction } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { getStrapiData } from "~/utils/api";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { Post } from "./blog._index";
 
 export const meta: MetaFunction = () => {
   return [
@@ -10,22 +11,20 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export async function loader({ params }) {
+export async function loader({ params }: { params: { postId: string;} }) {
   const { postId } = params;
 
   return getStrapiData(`blog-posts?filters[id][$eq]=${postId}&populate=author`);
 }
 
 export default function BlogPost() {
-  const post = useLoaderData()[0];
+  const post = useLoaderData<Post[]>()[0];
 
   const formattedPublishedAt = new Date(post.publishedAt).toLocaleDateString('pt-BR', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   })
-
-  console.log('post', post)
 
   return (
     <main className="base-container max-w-[780px] mx-auto">

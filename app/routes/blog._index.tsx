@@ -1,6 +1,18 @@
 import type { MetaFunction } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
+import { BlocksContent } from "@strapi/blocks-react-renderer";
 import { getStrapiData } from "~/utils/api";
+
+export type Post = {
+  id: number;
+  title: string;
+  preview?: string;
+  content: BlocksContent;
+  publishedAt: string;
+  author?: {
+    name: string;
+  }
+}
 
 export const meta: MetaFunction = () => {
   return [
@@ -14,9 +26,7 @@ export async function loader() {
 }
 
 export default function Blog() {
-  const posts = useLoaderData();
-
-  console.log('posts', posts)
+  const posts = useLoaderData<Post[]>();
 
   return (
     <main>

@@ -15,13 +15,9 @@ export const getStrapiData = async (contentKey: string) => {
       }
     });
 
-    console.log('endpoint:', `${process.env.STRAPI_URL_BASE}/api/${contentKey}`)
-
     checkStatus(response); // check the status
 
     const data = await response.json(); // get the json response
-
-    console.log('data', data?.data)
 
     if (data?.error) { // error check
       throw new Response("Error loading data from strapi", { status: 500 });
