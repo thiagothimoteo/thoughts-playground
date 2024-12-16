@@ -3,6 +3,7 @@ import { Link, useLoaderData } from "react-router";
 import { getStrapiData } from "~/utils/api";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Post } from "./blog._index";
+import { formatDate } from "~/utils/helpers";
 
 export const meta: MetaFunction = ({ data }) => {
   const post = (data as Post[])?.[0];
@@ -22,11 +23,7 @@ export async function loader({ params }: { params: { postId: string;} }) {
 export default function BlogPost() {
   const post = useLoaderData<Post[]>()[0];
 
-  const formattedPublishedAt = new Date(post.publishedAt).toLocaleDateString('pt-BR', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
+  const formattedPublishedAt = formatDate(post.publishedAt);
 
   return (
     <main className="base-container max-w-[780px] mx-auto">
@@ -35,10 +32,10 @@ export default function BlogPost() {
         {`>`}
         <div>{post.title}</div>
       </nav>
-      <article className="base-container">
+      <article className="base-container text-lg">
         <header className="base-container">
           <h1 className="main-heading">{post.title}</h1>
-          {post.preview && <h2 className="font-serif font-light text-gray-500 text-2xl">A brief explanation of what is lorem ipsum</h2>}
+          {post.preview && <h2 className="font-serif font-light text-gray-500 text-xl">{post.preview}</h2>}
           <address>
             <h3>{post?.author?.name}</h3>
             <time dateTime={post.publishedAt}>{formattedPublishedAt}</time>
