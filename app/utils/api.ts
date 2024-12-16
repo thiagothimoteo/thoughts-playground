@@ -1,6 +1,6 @@
 // checkEnvVars(); // check environmental variables
 
-import { json } from "@remix-run/react";
+import { data as json } from "react-router";
 import { checkEnvVars, checkStatus } from "./errorHandling";
 
 export const getStrapiData = async (contentKey: string) => {

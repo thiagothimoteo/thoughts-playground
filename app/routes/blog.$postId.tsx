@@ -1,5 +1,5 @@
-import type { MetaFunction } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import type { MetaFunction } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import { getStrapiData } from "~/utils/api";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Post } from "./blog._index";
